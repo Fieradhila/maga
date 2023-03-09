@@ -29,6 +29,14 @@ $sambung = mysqli_connect('localhost','root','','maga_karyawan') or die (mysqli_
 															jumlah_libur='$jumlah_libur' WHERE id_nilai='$id_nilai'");
 		echo "<script>alert('Data Berhasil Diedit')</script>";
 		echo "<meta  http-equiv='refresh' content='1 url=penilaian_krywn.php?berhasil1'>";
+	}elseif($us['file_sakit']){
+		mysqli_query($sambung, "UPDATE penilaian_krywn SET NIK='$NIK', jumlah_sakit='$jumlah_sakit', tgl_sakit='$tgl_sakit',
+															keterangan_sakit='$keterangan_sakit', file_sakit='$file_sakit',
+															jumlah_izin='$jumlah_izin', wkt_izin_dari='$wkt_izin_dari',
+															wkt_izin_smp='$wkt_izin_smp', keterangan_izin='$keterangan_izin',
+															jumlah_libur='$jumlah_libur' WHERE id_nilai='$id_nilai'");
+		echo "<script>alert('Data Berhasil Diedit')</script>";
+		echo "<meta  http-equiv='refresh' content='1 url=penilaian_krywn.php?berhasil1'>";
 	}elseif(empty($file_sakit)){
 		mysqli_query($sambung, "UPDATE penilaian_krywn SET NIK='$NIK', jumlah_sakit='$jumlah_sakit', tgl_sakit='$tgl_sakit', 
 																		keterangan_sakit='$keterangan_sakit',
