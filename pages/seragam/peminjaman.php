@@ -146,7 +146,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-      Peminjaman Seragam
+      Peminjaman Fasilitas
       </h1>
     </section>
 
@@ -159,7 +159,7 @@
           <div class="row">
             <div class="col-xs-12">
               <div class="box-body table-responsive no-padding">
-                <form action="tambah_seragam_krywn.php" method="POST" enctype="multipart/form-data">
+                <form action="tambah_seragam_krywn.php?id_seragam" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
                     <label class="control-label" for="NIK">NIK</label>
                     <select name="NIK" id="NIK" class="form-control"><option >Pilih NIK</option>
@@ -168,16 +168,19 @@
                       $hasil=mysqli_query($sambung, $sql);
                       while($baris=mysqli_fetch_row($hasil)) { ?>
                       <option name="NIK" value=<?=$baris[0];?>><?=$baris[0]?> - <?=$baris[2]?></option>
-                      <?php } ?>
+                      <?php } 
+                      
+                      // 
+                      ?>
                     </select>
                     <br>
                     <label class="control-label" for="id_seragam">Nama Fasilitas</label><br>
-                    <select class="form-control select2" multiple="multiple" name="id_seragam" id="id_seragam">
+                    <select class="form-control select2" multiple="multiple" name="id_seragam[]" id="id_seragam">
                     <?php
                       $sql="SELECT * from seragam";
                       $hasil=mysqli_query($sambung, $sql);
-                      while($baris=mysqli_fetch_row($hasil)) { ?>
-                      <option name="id_seragam[]" value=<?=$baris[0];?>><?=$baris[1]?></option>
+                      while($baris=mysqli_fetch_array($hasil)) { ?>
+                      <option name="id_seragam[]" value=<?=$baris['id_seragam'];?>><?=$baris['nama_seragam']?></option>
                       <?php } ?>
                     </select>
                   </div>
@@ -205,7 +208,7 @@
                 <td>&nbsp;</td>
             <tr>
             <tr>
-                <td colspan="3"><input type="submit" class="btn btn-block btn-primary btn-sm" value="Tampilkan"></td>
+                <td colspan="3"><input type="submit" class="btn btn-block btn-primary btn-sm" name="tampil" value="Tampilkan"></td>
             </tr>
             </form>
           </table>
@@ -236,8 +239,7 @@
                 if(isset($_GET['cari'])){
                   $cari = $_GET['cari'];
                   $search = mysqli_query($sambung, "SELECT nama_seragam from seragam, peminjaman where peminjaman.id_seragam = seragam.id_seragam && NIK like '%".$cari."%'");
-                                    //SELECT nama_seragam from seragam, peminjaman where peminjaman.id_seragam = seragam.id_seragam && NIK = 34021559
-
+                  //SELECT nama_seragam from seragam, peminjaman where peminjaman.id_seragam = seragam.id_seragam && NIK = 34021559
                   ?>
           <div class="box box-primary">
             <div class="box-header with-border">
@@ -250,12 +252,13 @@
                 <?php
                 $i=0;
                 while($d=mysqli_fetch_array($search)){
+                  if($d != 0){
                    
                   $i++;
                   ?>
                   <?php echo  '<br>'.$i; ?>
-              <?php echo '. '.$d['nama_seragam']; ?>
-            
+              <?php echo '. '.$d['nama_seragam']; 
+                  }?>
             <?php  } ?></div>
             <div class="box-footer" align="right">
             <a href=pengembalian1.php?NIK=<?php echo $abc['NIK'];?>><input type="submit" class="btn btn-primary btn-sm" name="tambah" value="Kembalikan" align="right"></a>
@@ -264,8 +267,6 @@
             <!-- /.box-body -->
           </div>
 <?php 
-                }else{
-                  $search = mysqli_query($sambung, "SELECT * FROM peminjaman where NIK='0'");
                 }
                 ?>
 

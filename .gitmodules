@@ -1,0 +1,4 @@
+[submodule "public"]
+	path = public
+	url = https://github.com/fieradhila/maga.git
+	branch = master

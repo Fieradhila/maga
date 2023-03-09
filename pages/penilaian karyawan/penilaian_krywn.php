@@ -161,6 +161,7 @@
                   <td><b>Jml Izin</b></td>
                   <td><b>Waktu Izin Dari</b></td>
                   <td><b>Waktu Izin Sampai</b></td>
+                  <td><b>Keterangan Izin</b></td>
                   <td><b>Jumlah Libur</b></td>
                   <td colspan="2"><b>Aksi</b></td>
                 </tr>
@@ -177,10 +178,11 @@
                   <td><?php echo $abc['jumlah_sakit']; ?></td>
                   <td><?php echo $abc['tgl_sakit']; ?></td>
                   <td><?php echo $abc['keterangan_sakit']; ?></td>
-                  <td><?php echo $abc['file_sakit']; ?></td>
+                  <td><a href="../berkas_karyawan/view_file_sakit.php?id_nilai=<?php echo $abc['id_nilai']; ?>"><?php echo $abc['file_sakit']; ?></a></td>
                   <td><?php echo $abc['jumlah_izin']; ?></td>
                   <td><?php echo $abc['wkt_izin_dari']; ?></td>
                   <td><?php echo $abc['wkt_izin_smp']; ?></td>
+                  <td><?php echo $abc['keterangan_izin']; ?></td>
                   <td><?php echo $abc['jumlah_libur']; ?></td>
                   <td><a href=hapus_nilai_krywn.php?id_nilai=<?php echo $abc['id_nilai'];?> onclick="return confirm('Hapus Kinerja?')"><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-trash"></i></button></a></td>
                   <td><a href=edit_nilai_krywn.php?id_nilai=<?php echo $abc['id_nilai'];?> onclick="return confirm('Edit Kinerja?')"><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-edit"></i></button></a></td>
@@ -225,7 +227,7 @@
                             <input type="date" name="tgl_sakit" autocomplete="off" id="tgl_sakit" class="form-control">
                             <br>
                             <label class="control-label" for="keterangan_sakit">Keterangan Sakit</label>
-                            <input type="text" name="keterangan_sakit" autocomplete="off" id="keterangan_sakit" class="form-control">
+                            <textarea name="keterangan_sakit" rows="2" cols="78" autocomplete="off" id="keterangan_sakit" class="form-control"></textarea>
                             <br>
                             <label class="control-label" for="file_sakit">Berkas Penunjang</label>
                             <input type="file" name="file_sakit" autocomplete="off" id="file_sakit" class="form-control">
@@ -238,6 +240,9 @@
                             <br>
                             <label class="control-label" for="wkt_izin_smp">Waktu Izin Sampai</label>
                             <input type="datetime-local" name="wkt_izin_smp" autocomplete="off" id="wkt_izin_smp" class="form-control">
+                            <br>
+                            <label class="control-label" for="keterangan_izin">Keterangan Izin</label>
+                            <textarea name="keterangan_izin" rows="2" cols="78" autocomplete="off" id="keterangan_izin" class="form-control"></textarea>
                             <br>
                             <label class="control-label" for="jumlah_libur">Jumlah Libur</label>
                             <input type="number" name="jumlah_libur" autocomplete="off" id="jumlah_libur" class="form-control">

@@ -161,12 +161,12 @@
                               <br>
                               <label class="control-label" for="ID">Nama Seragam</label>
                               <br>
-                              <input type="radio" name="id_seragam" value="<?php echo $fet['id_seragam']?>" id="ID">&nbsp;<?php echo $fet['nama_seragam']?>
+                              <input type="checkbox" name="id_seragam[]" value="<?php echo $fet['id_seragam']?>" id="ID">&nbsp;<?php echo $fet['nama_seragam']?>
                               <br>
                               <?php
                             while($d=mysqli_fetch_array($query)){
                               ?>
-                              <input type="radio" name="id_seragam" value="<?php echo $d['id_seragam']?>" id="ID">&nbsp;<?php echo $d['nama_seragam']?>
+                              <input type="checkbox" name="id_seragam[]" value="<?php echo $d['id_seragam']?>" id="ID">&nbsp;<?php echo $d['nama_seragam']?>
                               <br>
                               <?php } ?>
                             </div>

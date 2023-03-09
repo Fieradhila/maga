@@ -134,11 +134,18 @@
                     $query=mysqli_query($sambung, "SELECT * FROM dftr_krywn where dftr_krywn.NIK='$kd' ");
                     $fet=mysqli_fetch_array($query);
                     ?>
+                    <?php
+                    $month = date('m');
+                    $day = date('d');
+                    $year = date('Y');
+
+                    $today = $year . '-' . $month . '-' . $day;
+                    ?>
                         <form action="proses_tambah_mutasi.php" method="post" enctype="multipart/form-data">
                           <div class="modal-body">
                             <div class="form-group">
                               <label class="control-label" for="tgl_mutasi">Tanggal Mutasi</label>
-                              <input type="date" name="tgl_mutasi" autocomplete="off" class="form-control" id="tgl_mutasi" required>
+                              <input type="date" name="tgl_mutasi" autocomplete="off" value="<?= $today; ?>" class="form-control" id="tgl_mutasi">
                               <br>
                               <label class="control-label" for="NIK">NIK</label>
                               <input type="text" name="NIK" value="<?php echo $fet['NIK']?>" autocomplete="off" class="form-control" id="NIK" readonly>

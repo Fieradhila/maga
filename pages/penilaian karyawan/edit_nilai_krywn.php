@@ -157,8 +157,8 @@
                               <label class="control-label" for="jumlah_sakit">Jumlah Sakit</label>
                               <input type="number" name="jumlah_sakit" value="<?php echo $fet['jumlah_sakit']?>" autocomplete="off" class="form-control" id="tgl_mutasi">
                               <br>
-                              <label class="control-label" for="keterangan_sakit">Tanggal Sakit</label>
-                              <input type="text" name="keterangan_sakit" value="<?php echo $fet['keterangan_sakit']?>" autocomplete="off" class="form-control" id="NIK">
+                              <label class="control-label" for="tgl_sakit">Tanggal Sakit</label>
+                              <input type="text" name="tgl_sakit" value="<?php echo $fet['tgl_sakit']?>" autocomplete="off" class="form-control" id="NIK">
                               <br>
                               <label class="control-label" for="keterangan_sakit">Keterangan Sakit</label>
                               <input type="text" name="keterangan_sakit" value="<?php echo $fet['keterangan_sakit']?>" autocomplete="off" class="form-control" id="NIK">
@@ -174,6 +174,9 @@
                               <br>
                               <label class="control-label" for="wkt_izin_smp">Waktu Izin Sampai</label>
                               <input type="datetime-local" name="wkt_izin_smp" value="<?php echo $fet['wkt_izin_smp']?>" autocomplete="off" class="form-control" id="nama_krywn">
+                              <br>
+                              <label class="control-label" for="keterangan_izin">Keterangan Izin</label>
+                              <textarea name="keterangan_izin" rows="2" cols="78" autocomplete="off" id="keterangan_izin" class="form-control"></textarea>
                               <br>
                               <label class="control-label" for="jumlah_libur">Jumlah Libur</label>
                               <input type="number" name="jumlah_libur" value="<?php echo $fet['jumlah_libur']?>" autocomplete="off" class="form-control" id="nama_krywn">
