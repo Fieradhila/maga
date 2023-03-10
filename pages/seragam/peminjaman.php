@@ -199,7 +199,7 @@
                       $sql="SELECT * from dftr_krywn";
                       $hasil=mysqli_query($sambung, $sql);
                       while($baris=mysqli_fetch_row($hasil)) { ?>
-                      <option name="cari" value=<?=$baris[0];?>><?=$baris[0]?> - <?=$baris[2]?></option>
+                      <option name="cari" value=<?=$baris[0];?>><?=$baris[2]?> - <?=$baris[0]?></option>
                       <?php } ?>
                     </select>
             </td>
