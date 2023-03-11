@@ -143,10 +143,74 @@
         <div class="box-header">
           <table border="0" align="left">
           <tr>
-          <td><button type="submit" data-toggle="modal" data-target="#tambah" value="simpan" class="btn btn-block btn-primary btn-sm"><i class="fa fa-user-plus"> Tambah</i></button></a>
-          </td>
+            <td>
+              <button type="submit" data-toggle="modal" data-target="#tambah" value="simpan" class="btn btn-block btn-primary btn-sm"><i class="fa fa-user-plus"> Tambah</i></button></a>
+            </td>
+            <td>
+              <label class="control-label">&emsp;Periode :&nbsp;</label>
+            </td>
+            <td>
+              <select class="form-control" name="periode"> 
+                <option name="1">Harian</option>
+                <option name="2">Bulanan</option>
+                <option name="3">Tahunan</option>
+              </select>
+            </td>
+            <?php
+            $month = date('m');
+            $day = date('d');
+            $year = date('Y');
+
+            $today = $year . '-' . $month . '-' . $day;
+            $monthyear = $year . '-' . $month;
+
+            $periode = $_GET['periode'];
+
+            switch ($periode) {
+              case '1':
+                ?>
+                <td>
+                  <label class="control-label">&emsp;Tanggal :&nbsp;</label>
+                </td>
+                <td>
+                  <input type="date" class="form-control" value="<?= $today; ?>">
+                </td>
+                s<?php
+                break;
+
+              case '2' :
+                ?>
+                <td>
+                  <label class="control-label">&emsp;Bulan :&nbsp;</label>
+                </td>
+                <td>
+                  <input type="month" class="form-control" value="<?= $monthyear; ?>">
+                  </td>
+                <?php
+                break;
+
+              case '3' :
+                ?>
+                <td>
+                  <label class="control-label">&emsp;Tahun :&nbsp;</label>
+                </td>
+                <td>
+                  <input type="number" class="form-control" value="<?= $year; ?>">
+                </td>
+                <?php
+                break;
+
+              default:
+                # code...
+                break;
+            }
+
+            ?>
+            <td>&emsp;</td>
+            <td><button type="submit" class="btn btn-block btn-primary btn-sm"><i class="fa fa-search"></i> Tampilkan</button></td>
           </tr>
           </table>
+
           <div class="row">
           <div class="col-xs-12">
                 <div class="box-body table-responsive no-padding">
@@ -224,7 +288,7 @@
                             <input type="number" name="jumlah_sakit" autocomplete="off" id="jumlah_sakit" class="form-control">
                             <br>
                             <label class="control-label" for="tgl_sakit">Tanggal Sakit</label>
-                            <input type="date" name="tgl_sakit" autocomplete="off" id="tgl_sakit" class="form-control">
+                            <input type="date" name="tgl_sakit" autocomplete="off" id="tgl_sakit" class="form-control" value="<?= $today; ?>">
                             <br>
                             <label class="control-label" for="keterangan_sakit">Keterangan Sakit</label>
                             <textarea name="keterangan_sakit" rows="2" cols="78" autocomplete="off" id="keterangan_sakit" class="form-control"></textarea>
