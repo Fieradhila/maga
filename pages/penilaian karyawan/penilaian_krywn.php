@@ -151,9 +151,9 @@
             </td>
             <td>
               <select class="form-control" name="periode[]"> 
-                <option name="1">Harian</option>
-                <option name="2">Bulanan</option>
-                <option name="3">Tahunan</option>
+                <option name="1" value="1">Harian</option>
+                <option name="2" value="2">Bulanan</option>
+                <option name="3" value="3">Tahunan</option>
               </select>
             </td>
             <?php
@@ -164,16 +164,22 @@
             $today = $year . '-' . $month . '-' . $day;
             $monthyear = $year . '-' . $month;
 
-            $periode = 2;
+            if(isset($_GET['periode'])){
+              $periode = $_GET['periode'];
+              $period = $periode;
+            }
+            
+            //periode = $_GET['periode'];
+            //$periode = 2;
 
-            switch ($periode) {
+            switch ($period) {
               case '1':
                 ?>
                 <td>
                   <label class="control-label">&emsp;Tanggal :&nbsp;</label>
                 </td>
                 <td>
-                  <input type="date" class="form-control" value="<?= $today; ?>">
+                  <input type="date" class="form-control" value="<?= $today; ?>" name="tanggal">
                 </td>
                 <?php
                 break;
@@ -184,7 +190,7 @@
                   <label class="control-label">&emsp;Bulan :&nbsp;</label>
                 </td>
                 <td>
-                  <input type="month" class="form-control" value="<?= $monthyear; ?>">
+                  <input type="month" class="form-control" value="<?= $monthyear; ?>" name="bulan">
                   </td>
                 <?php
                 break;
@@ -195,7 +201,7 @@
                   <label class="control-label">&emsp;Tahun :&nbsp;</label>
                 </td>
                 <td>
-                  <input type="number" class="form-control" value="<?= $year; ?>">
+                  <input type="number" class="form-control" value="<?= $year; ?>" name="tahun">
                 </td>
                 <?php
                 break;
