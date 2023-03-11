@@ -163,7 +163,7 @@
               </div>
             </td>
             <td>&ensp;</td>
-            <form  action="#" method="GET">
+            <form action="#" method="GET">
             <td>
               <label for="tgl_masuk1">Dari Tgl : </label>
             </td>

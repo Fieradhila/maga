@@ -175,7 +175,7 @@
           <div class="info-box">
             <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
             <div class="info-box-content">
-              <span class="info-box-text">Krywn Aktif</span>
+              <span class="info-box-text">Karyawan Aktif</span>
               <span class="info-box-number"><?php echo $data_query['aktif'] ?></span>
             </div>
             <!-- /.info-box-content -->
@@ -188,7 +188,7 @@
             <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Krywn Tetap</span>
+              <span class="info-box-text">Karyawan Tetap</span>
               <span class="info-box-number"><?php echo $data_tetap['tetap'] ?></span>
             </div>
             <!-- /.info-box-content -->
@@ -205,7 +205,7 @@
             <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Krywn Kontrak</span>
+              <span class="info-box-text">Karyawan Kontrak</span>
               <span class="info-box-number"><?php echo $data_kontrak['kontrak'] ?></span>
             </div>
             <!-- /.info-box-content -->
@@ -218,7 +218,7 @@
             <span class="info-box-icon bg-yellow"><i class="fa fa-users"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Krywn Training</span>
+              <span class="info-box-text">Karyawan Training</span>
               <span class="info-box-number"><?php echo $data_training['training'] ?></span>
             </div>
             <!-- /.info-box-content -->
@@ -226,9 +226,11 @@
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
+      </div>
                   
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <div class="row">
         <section class="col-lg-5 connectedSortable">
         <div class="box box-primary">
           <!-- Calendar -->
@@ -250,12 +252,9 @@
           </div>
           <!-- /.box -->
         </div>
-        </section>
-        <!-- right col -->
-      </div>
-                    
-      <!-- /.row (main row) -->
-
+      </section>
+  </div>
+      
     </section>
     <!-- /.content -->
   </div>
