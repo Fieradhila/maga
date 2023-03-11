@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2023 at 03:06 AM
+-- Generation Time: Mar 11, 2023 at 09:47 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -157,11 +157,20 @@ CREATE TABLE `peminjaman` (
 --
 
 INSERT INTO `peminjaman` (`id`, `NIK`, `id_seragam`) VALUES
-(78996, 34021559, 2),
-(78997, 1234567, 2),
-(79000, 89458, 2),
-(79001, 6576755, 3),
-(79006, 886893, 2);
+(79020, 89458, 5),
+(79021, 89458, 6),
+(79022, 89458, 7),
+(79024, 1234567, 4),
+(79025, 1234567, 5),
+(79026, 548789, 6),
+(79027, 548789, 8),
+(79028, 886893, 2),
+(79029, 6576755, 1),
+(79030, 6576755, 2),
+(79031, 12181610, 1),
+(79032, 12181610, 2),
+(79033, 69686979, 1),
+(79034, 97686246, 2);
 
 -- --------------------------------------------------------
 
@@ -206,7 +215,9 @@ CREATE TABLE `penilaian_krywn` (
 --
 
 INSERT INTO `penilaian_krywn` (`id_nilai`, `NIK`, `jumlah_sakit`, `tgl_sakit`, `keterangan_sakit`, `file_sakit`, `jumlah_izin`, `wkt_izin_dari`, `wkt_izin_smp`, `keterangan_izin`, `jumlah_libur`) VALUES
-(98, 548789, 1, '2023-03-09', '-', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0);
+(98, 548789, 3, '2023-03-09', '-', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 0),
+(99, 12181610, 2, '2023-02-03', '-', NULL, NULL, NULL, NULL, NULL, NULL),
+(100, 12181610, 1, '2022-11-23', '-', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -337,7 +348,7 @@ ALTER TABLE `mutasi_krywn`
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79009;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79035;
 
 --
 -- AUTO_INCREMENT for table `pengembalian`
@@ -349,7 +360,7 @@ ALTER TABLE `pengembalian`
 -- AUTO_INCREMENT for table `penilaian_krywn`
 --
 ALTER TABLE `penilaian_krywn`
-  MODIFY `id_nilai` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id_nilai` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `seragam`
