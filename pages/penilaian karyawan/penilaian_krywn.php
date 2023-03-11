@@ -150,7 +150,7 @@
               <label class="control-label">&emsp;Periode :&nbsp;</label>
             </td>
             <td>
-              <select class="form-control" name="periode"> 
+              <select class="form-control" name="periode[]"> 
                 <option name="1">Harian</option>
                 <option name="2">Bulanan</option>
                 <option name="3">Tahunan</option>
@@ -164,7 +164,7 @@
             $today = $year . '-' . $month . '-' . $day;
             $monthyear = $year . '-' . $month;
 
-            $periode = $_GET['periode'];
+            $periode = 2;
 
             switch ($periode) {
               case '1':
@@ -175,7 +175,7 @@
                 <td>
                   <input type="date" class="form-control" value="<?= $today; ?>">
                 </td>
-                s<?php
+                <?php
                 break;
 
               case '2' :
@@ -200,8 +200,11 @@
                 <?php
                 break;
 
-              default:
-                # code...
+              default:?>
+                <td>
+                  <label class="control-label">&emsp;Data tidak ditemukan</label>
+                </td>
+                <?php
                 break;
             }
 
