@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>MAGA</title>
-  <!-- Tell the browser to be responsive to screen width -->
+
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -232,23 +232,20 @@
         <section class="col-lg-5 connectedSortable">
         <div class="box box-primary">
           <!-- Calendar -->
-          <div class="box box-solid bg-green-gradient">
+          <div class="box box-solid bg-blue-gradient">
             <div class="box-header">
               <i class="fa fa-calendar"></i>
               <h3 class="box-title">Calendar</h3>
               <!-- tools box -->
               <div class="pull-right box-tools">
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                <button type="button" class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
-                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                <button type="button" class="btn btn-primary btn-sm" data-widget="remove"><i class="fa fa-times"></i>
                 </button>
               </div>
-              <!-- /. tools -->
             </div>
-            <!-- /.box-header -->
             <div class="box-body no-padding">
-              <!--The calendar -->
-              <div id="calendar" style="width: 100% heiht: 100%"></div>
+              <div id="calendar" width="100%" height="100%"></div>
             </div>
           </div>
           <!-- /.box -->
