@@ -157,12 +157,17 @@
               </div>
             </td>
             <?php
+            //$jam = datetime('local');
+            date_default_timezone_set("Asia/Jakarta");
+            $jam = date("Y-m-d h:i");
             $month = date('m');
             $day = date('d');
             $year = date('Y');
 
             $today = $year . '-' . $month . '-' . $day;
             $monthyear = $year . '-' . $month;
+            //$time = $jam . '-' . $minute;
+
             ?>
           <form action="#" method="GET">
                 <td>

@@ -155,7 +155,19 @@
                   <li><a href="tahunan.php">Tahunan</a></li>
                 </ul>
               </div>
+            </td><!--
+            <form action="#" method="get">
+            <td>
+              <select name="periode" class="form-control">
+                <option value="harian" name="harian">Harian</option>
+                <option value="bulanan" name="bulanan">Bulanan</option>
+                <option value="tahunan" name="tahunan">Tahunan</option>
+              </select>
             </td>
+            <td>
+            <input type="submit" class="btn btn-success btn-sm" name="tambah" value="Simpan">
+            </td>
+          </form>-->
             <?php
             $month = date('m');
             $day = date('d');

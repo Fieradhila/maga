@@ -168,9 +168,7 @@
                       $hasil=mysqli_query($sambung, $sql);
                       while($baris=mysqli_fetch_row($hasil)) { ?>
                       <option name="NIK" value=<?=$baris[0];?>><?=$baris[0]?> - <?=$baris[2]?></option>
-                      <?php } 
-                      
-                      // 
+                      <?php }  
                       ?>
                     </select>
                     <br>
@@ -211,10 +209,7 @@
                 <td colspan="3"><input type="submit" class="btn btn-block btn-primary btn-sm" name="tampil" value="Tampilkan"></td>
             </tr>
             </form>
-          </table>
-              
-
-
+              </table>
               </div>
             </div>
           </div>
@@ -238,7 +233,7 @@
                 <?php
                 if(isset($_GET['cari'])){
                   $cari = $_GET['cari'];
-                  $search = mysqli_query($sambung, "SELECT nama_seragam from seragam, peminjaman where peminjaman.id_seragam = seragam.id_seragam && NIK like '%".$cari."%'");
+                  $search = mysqli_query($sambung, "SELECT nama_seragam from seragam, peminjaman where peminjaman.id_seragam = seragam.id_seragam && NIK like '%".$cari."%' ORDER BY seragam.nama_seragam ASC");
                   //SELECT nama_seragam from seragam, peminjaman where peminjaman.id_seragam = seragam.id_seragam && NIK = 34021559
                   ?>
           <div class="box box-primary">
