@@ -236,8 +236,8 @@
                   <td><?php echo $abc['wkt_izin_smp']; ?></td>
                   <td><?php echo $abc['keterangan_izin']; ?></td>
                   <td><?php echo $abc['jumlah_libur']; ?></td>
-                  <td><a href=hapus_nilai_krywn.php?id_nilai=<?php echo $abc['id_nilai'];?> onclick="return confirm('Hapus Kinerja?')"><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-trash"></i></button></a></td>
-                  <td><a href=edit_nilai_krywn.php?id_nilai=<?php echo $abc['id_nilai'];?> onclick="return confirm('Edit Kinerja?')"><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-edit"></i></button></a></td>
+                  <td><a data-toggle="tooltip" title="Hapus" href=hapus_nilai_krywn.php?id_nilai=<?php echo $abc['id_nilai'];?> onclick="return confirm('Hapus Kinerja?')"><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-trash"></i></button></a></td>
+                  <td><a data-toggle="tooltip" title="Edit" href=edit_nilai_krywn.php?id_nilai=<?php echo $abc['id_nilai'];?> onclick="return confirm('Edit Kinerja?')"><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-edit"></i></button></a></td>
                 </tr>
                   <?php } ?>
                   </table>

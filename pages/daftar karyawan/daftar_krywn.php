@@ -307,9 +307,9 @@
                   <td><?php echo $abc['jabatan']; ?></td>
                   <td><?php echo $abc['cabang']; ?></td>
                   <td><?php echo $abc['departement']; ?></td>
-                  <td><a href=hapus_karyawan.php?NIK=<?php echo $abc['NIK'];?> onclick="return confirm('Anda yakin ingin menghapus data ini?')"><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-trash-o"></i></button></a></td>
-                  <td><a href=edit_krywn.php?NIK=<?php echo $abc['NIK'];?> onclick="return confirm('Anda yakin ingin mengedit data ini?')"><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-edit"></i></button></a></td>
-                  <td><a href=detail_krywn.php?NIK=<?php echo $abc['NIK'];?>><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-info-circle"></i></button></a></td>
+                  <td><a data-toggle="tooltip" title="Hapus" href=hapus_karyawan.php?NIK=<?php echo $abc['NIK'];?> onclick="return confirm('Anda yakin ingin menghapus data ini?')"><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-trash-o"></i></button></a></td>
+                  <td><a data-toggle="tooltip" title="Edit" href=edit_krywn.php?NIK=<?php echo $abc['NIK'];?> onclick="return confirm('Anda yakin ingin mengedit data ini?')"><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-edit"></i></button></a></td>
+                  <td><a data-toggle="tooltip" title="Detail" href=detail_krywn.php?NIK=<?php echo $abc['NIK'];?>><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-info-circle"></i></button></a></td>
                 </tr>
                 <?php } ?>
                   </table>
