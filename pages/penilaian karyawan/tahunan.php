@@ -164,19 +164,7 @@
             $today = $year . '-' . $month . '-' . $day;
             $monthyear = $year . '-' . $month;
             ?>
-          <!--<form action="#" method="GET">
-                <td>
-                  <label class="control-label" for="tanggal">&emsp;Tanggal :&nbsp;</label>
-                </td>
-                <td>
-                  <input type="date" class="form-control" value="<?= $today; ?>" name="tanggal" id="tanggal">
-                </td>
-                             <td>
-                             <label class="control-label">&emsp;Bulan :&nbsp;</label>
-                           </td>
-                           <td>
-                             <input type="month" class="form-control" value="<?= $monthyear; ?>" name="bulan">
-                             </td>
+          <form action="#" method="GET">
                            <td>
               <label class="control-label">&emsp;Tahun :&nbsp;</label>
                 </td>
@@ -185,7 +173,7 @@
                 </td>
             <td>&emsp;</td>
             <td><input type="submit" class="btn btn-block btn-primary btn-sm" value="Tampiilkan"></td>
-</form>-->
+</form>
           </tr>
           </table>
 
@@ -221,7 +209,7 @@
                   $cari_tgl = mysqli_query($sambung, "SELECT * FROM penilaian_krywn WHERE tgl_sakit like '%".$thn1."%'");
                 }
                 else{
-                  $cari_tgl = mysqli_query($sambung, "SELECT * FROM penilaian_krywn");
+                  $cari_tgl = mysqli_query($sambung, "SELECT * FROM penilaian_krywn WHERE tgl_sakit='0'");
                 }
                 while($abc=mysqli_fetch_assoc($cari_tgl)){
                   ?>

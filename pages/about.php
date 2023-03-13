@@ -109,7 +109,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
-        <li class="active">
+        <li>
           <a href="dashboard.php">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             <span class="pull-right-container"></span>
@@ -147,6 +147,12 @@
             <i class="fa fa-user"></i> <span>Laporan</span>
           </a>
         </li>
+        <li class="active">
+          <a href="about.php">
+            <i class="fa fa-info-circle"></i> <span>About</span>
+            <span class="pull-right-container"></span>
+          </a>
+        </li>
         <li>
           <a href="../index.php" onclick="return confirm('Anda yakin ingin Keluar?')" >
             <i class="fa fa-sign-out"></i> <span>Keluar</span>
@@ -162,98 +168,37 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        APLIKASI KARYAWAN
+        TENTANG APLIKASI
       </h1>
     </section>
 
-    <!-- Main content -->
+
     <section class="content">
-      <!-- Main row -->
-      <div class="row">
-        <!-- Left col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
-            <div class="info-box-content">
-              <span class="info-box-text">Karyawan Aktif</span>
-              <span class="info-box-number"><?php echo $data_query['aktif'] ?></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Karyawan Tetap</span>
-              <span class="info-box-number"><?php echo $data_tetap['tetap'] ?></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
-        <!-- fix for small devices only -->
-        <div class="clearfix visible-sm-block"></div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Karyawan Kontrak</span>
-              <span class="info-box-number"><?php echo $data_kontrak['kontrak'] ?></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="fa fa-users"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Karyawan Training</span>
-              <span class="info-box-number"><?php echo $data_training['training'] ?></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-      </div>
-                  
-        <!-- /.Left col -->
-        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <div class="row">
-        <section class="col-lg-5 connectedSortable">
-        <div class="box box-primary">
-          <!-- Calendar -->
-          <div class="box box-solid bg-blue-gradient">
+    <div class="box">
             <div class="box-header">
-              <i class="fa fa-calendar"></i>
-              <h3 class="box-title">Calendar</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <button type="button" class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-primary btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
-              </div>
+              <h3 class="box-title">Social Media
+              </h3>
             </div>
-            <div class="box-body no-padding">
-              <div id="calendar" width="100%" height="100%"></div>
+            <div class="box-body">
+              <a class="btn btn-block btn-social btn-facebook" href="#">
+                <i class="fa fa-facebook"></i> Facebook
+              </a>
+              <a class="btn btn-block btn-social btn-google" href="#">
+                <i class="fa fa-google"></i> Google
+              </a>
+              <a class="btn btn-block btn-social btn-success" href="https://wa.me/62895403855030">
+                <i class="fa fa-whatsapp"></i> WhatsApp
+              </a>
+              <a class="btn btn-block btn-social btn-instagram" href="https://instagram.com/magaswalayan/">
+                <i class="fa fa-instagram"></i> Instagram
+              </a>
+              <a class="btn btn-block btn-social btn-reddit" href="https://play.google.com/store/apps/details?id=com.magaswalayan">
+                <i class="fa fa-play-circle"></i> Aplikasi
+              </a>
+              <br>
             </div>
           </div>
-          <!-- /.box -->
-        </div>
-      </section>
-  </div>
+
       
     </section>
     <!-- /.content -->
