@@ -158,7 +158,7 @@
             </td>
             <?php
             //$jam = datetime('local');
-            date_default_timezone_set("Asia/Jakarta");
+            //Belum date_default_timezone_set("Asia/Jakarta");
             $jam = date("Y-m-d h:i");
             $month = date('m');
             $day = date('d');
