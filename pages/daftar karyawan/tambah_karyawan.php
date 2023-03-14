@@ -50,6 +50,7 @@ if(file_exists("../berkas_karyawan/file_foto/".$us['file_foto'])){
 				$temp = explode(".", $_FILES["file_nikah"]["name"]);
 				$namefilenikah = round(microtime(true)) . '.' . end($temp);
 				move_uploaded_file($_FILES["file_nikah"]["tmp_name"], "../berkas_karyawan/file_nikah/" . $namefilenikah);
+				$last_id = mysqli_insert_id($sambung);
 				mysqli_query($sambung, "INSERT INTO dftr_krywn (NIK,ID,nama_krywn,tgl_lahir,status_nikah,alamat,gender,pendidikan,agama, no_hp, tgl_masuk, jabatan,cabang, departement, email, status_kerja, status_aktif, file_foto, file_ktp, file_kk, file_nikah) values 
 							('$NIK','$ID','$nama_krywn','$tgl_lahir','$status_nikah','$alamat','$gender','$pendidikan','$agama','$no_hp','$tgl_masuk','$jabatan','$cabang','$departement','$email','$status_kerja','$status_aktif', '$namefilefoto','$namefilektp', '$namefilekk', '$namefilenikah')")  or die (mysqli_error());
 				  echo "<script>alert('Data Berhasil Disimpan')</script>";

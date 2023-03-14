@@ -234,23 +234,28 @@
                   <td><b>Tgl Lahir</b></td>
                   <td><b>Alamat</b></td>
                   <td><b>Agama</b></td>
-                  <td><b>Tanggal</b></td>
+                  <td><b>Email</b></td>
                   <td><b>Jabatan</b></td>
                   <td><b>Cabang</b></td>
                   <td><b>Departement</b></td>
                   <td colspan="3"><b>Aksi</b></td>
                 </tr>
                 <?php
+                $tgl1 = isset($_GET['tgl_masuk1']);
+                $tgl2 = isset($_GET['tgl_masuk2']);
                 //buat tgl_history jadi ketika sampai tgl dan karyawan belum dimutasi tampil data yang lama dan  jika sudah dimutasi akan keluar data yang baru
-                if(isset($_GET['tgl_masuk1']) AND isset($_GET['tgl_masuk2'])){
+                if($tgl2 AND $tgl2){
+                  $tgl_masuk1 = $_GET['tgl_masuk1'];
+                  $tgl_masuk2 = $_GET['tgl_masuk2'];
+                  $cari_tgl = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_lama AS jabatan, mutasi_krywn.lokasi_lama AS cabang, mutasi_krywn.departement_lama AS departement, mutasi_krywn.tgl_mutasi as mutasi FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND dftr_krywn.tgl_masuk = '$tgl_masuk2'");
+                  //$cari_tgl = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_baru AS jabatan, mutasi_krywn.lokasi_baru AS cabang, mutasi_krywn.departement_baru AS departement, mutasi_krywn.tgl_mutasi as mutasi FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND mutasi_krywn.tgl_mutasi BETWEEN '$tgl_masuk1' AND '$tgl_masuk2'");
+                  echo "if";
+                }elseif ($tgl1 AND $tgl2) {
                   $tgl_masuk1 = $_GET['tgl_masuk1'];
                   $tgl_masuk2 = $_GET['tgl_masuk2'];
                   $cari_tgl = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_baru AS jabatan, mutasi_krywn.lokasi_baru AS cabang, mutasi_krywn.departement_baru AS departement, mutasi_krywn.tgl_mutasi as mutasi FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND mutasi_krywn.tgl_mutasi BETWEEN '$tgl_masuk1' AND '$tgl_masuk2'");
-                }/*elseif (isset($_GET['tgl_masuk1']) AND isset($_GET['tgl_masuk2'])) {
-                  $tgl_masuk1 = $_GET['tgl_masuk1'];
-                  $tgl_masuk2 = $_GET['tgl_masuk2'];
-                  $cari_tgl = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, dftr_krywn.jabatan AS jabatan, dftr_krywn.cabang AS cabang, dftr_krywn.departement AS departement, mutasi_krywn.tgl_mutasi AS mutasi FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND dftr_krywn.tgl_masuk BETWEEN '$tgl_masuk1' AND '$tgl_masuk2'");
-                }*/
+                  echo "else";
+                }
                 else{
                   $cari_tgl = mysqli_query($sambung, "SELECT * FROM dftr_krywn where ID='0'");
                 }
@@ -263,7 +268,7 @@
                     <td><?php echo $tgl['tgl_lahir']; ?></td>
                     <td><?php echo $tgl['alamat']; ?></td>
                     <td><?php echo $tgl['agama']; ?></td>
-                    <td><?php echo $tgl['mutasi']; ?></td>
+                    <td><?php echo $tgl['email']; ?></td>
                     <td><?php echo $tgl['jabatan']; ?></td>
                     <td><?php echo $tgl['cabang']; ?></td>
                     <td><?php echo $tgl['departement']; ?></td>
@@ -292,7 +297,7 @@
                                                                                     departement like '%".$cari."%' OR
                                                                                     email like '%".$cari."%' OR
                                                                                     status_kerja like '%".$cari."%' OR
-                                                                                    status_aktif like '%".$cari."%'
+                                                                                    status_aktif like '%".$cari."%' ORDER BY ID DESC
                                                                                     ");
                 }else{
                   $search = mysqli_query($sambung, "SELECT * FROM dftr_krywn where ID='0' ");
@@ -349,10 +354,15 @@
       </div>
     </div>
   </div>
-<?php 
+<?php
+
+//$lastid = mysqli_query($sambung, "SELECT ID FROM dftr_krywn");
+  //$last_id = mysqli_last_id($lastid);
+  //echo "New record created successfully. Last inserted ID is: " . $last_id;
+
 $i = 0;
 
-while ($i <= 1000) {
+while ($i < 1000) {
   $i++;
 }
 
@@ -360,6 +370,7 @@ $month = date('m');
 $day = date('d');
 $year = date('Y');
 
+$kry = $month . $year;
 $id_kry = $month . $year . $i;
 ?>
   <!-- /.content-wrapper -->
@@ -376,7 +387,7 @@ $id_kry = $month . $year . $i;
                             <label class="control-label" for="NIK">NIK</label>
                             <input type="number" name="NIK" autocomplete="off" id="NIK" class="form-control" required>
                             <br>
-                            <label class="control-label" for="ID">ID Karyawan<small>&emsp;ID Terakhir : <?php echo $id_kry; ?></small></label>
+                            <label class="control-label" for="ID">ID Karyawan<small><a data-toggle="modal" data-target="#last">&emsp;ID Terakhir</a></small></label>
                             <input type="text" name="ID" autocomplete="off" value=<?php echo $id_kry; ?> id="ID" class="form-control" required>
                             <!-- Dibuat otomatis generate angka 13030001 tglblnnumber--> 
                             <br>
@@ -511,6 +522,54 @@ $id_kry = $month . $year . $i;
                     </div>
                   </div>
                 </div>
+
+
+                <div id="last" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Cari ID Terakhir</h4>
+        </div>
+        <form action="#" method="GET" enctype="multipart/form-data">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="control-label" for="cariid">ID Terakhir</label>
+              <input type="text" name="cariid" value=<?php echo $kry; ?> autocomplete="off" id="cariid" class="form-control" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-success" value="Cari">
+          </div>
+        </form>
+        <table class="table table-bordered">
+          <tr>
+            <td>ID yang sudah ada</td>
+</tr>
+<tr>
+            <td>
+
+            <?php 
+            
+if(isset($_GET['cariid'])){
+  $cari = $_GET['cariid'];
+}
+            ?>
+        <?php
+        if(isset($_GET['cariid'])){
+          $idlast = $_GET['cariid'];
+          $last = mysqli_query($sambung, "SELECT ID FROM dftr_krywn WHERE ID like '%".$idlast."%' ORDER BY ID DESC");
+        }else{
+          $last = mysqli_query($sambung, "SELECT ID FROM dftr_krywn");
+        }
+        while($idid=mysqli_fetch_array($last)){?>
+          <?php echo $idid['ID']; ?>
+        <?php } ?></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
 
   <footer class="main-footer">
     <strong>Copyright
