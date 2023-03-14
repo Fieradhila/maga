@@ -234,21 +234,24 @@
                   <td><b>Tgl Lahir</b></td>
                   <td><b>Alamat</b></td>
                   <td><b>Agama</b></td>
-                  <td><b>Email</b></td>
+                  <td><b>Tanggal</b></td>
                   <td><b>Jabatan</b></td>
                   <td><b>Cabang</b></td>
                   <td><b>Departement</b></td>
                   <td colspan="3"><b>Aksi</b></td>
                 </tr>
                 <?php
-                if(isset($_GET['tgl_masuk1']) AND isset($_GET['tgl_masuk1'])){
+                //buat tgl_history jadi ketika sampai tgl dan karyawan belum dimutasi tampil data yang lama dan  jika sudah dimutasi akan keluar data yang baru
+                if(isset($_GET['tgl_masuk1']) AND isset($_GET['tgl_masuk2'])){
                   $tgl_masuk1 = $_GET['tgl_masuk1'];
                   $tgl_masuk2 = $_GET['tgl_masuk2'];
-                  
-                  $cari_tgl = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_lama AS jabatan, mutasi_krywn.lokasi_lama AS cabang, mutasi_krywn.departement_lama AS departement FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND mutasi_krywn.tgl_mutasi BETWEEN '$tgl_masuk1' AND '$tgl_masuk2'");
-                  //SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_lama AS jabatan, mutasi_krywn.lokasi_lama AS cabang, mutasi_krywn.departement_lama AS departement FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND mutasi_krywn.tgl_mutasi BETWEEN '$tgl_masuk1' AND '$tgl_masuk2'
-                  //SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_lama AS jabatan, mutasi_krywn.lokasi_lama AS lokasi, mutasi_krywn.departement_lama AS departement, mutasi_krywn.tgl_mutasi AS tgl_mutasi FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK && tgl_masuk BETWEEN '$tgl_masuk1' AND '$tgl_masuk2
-                }else{
+                  $cari_tgl = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_baru AS jabatan, mutasi_krywn.lokasi_baru AS cabang, mutasi_krywn.departement_baru AS departement, mutasi_krywn.tgl_mutasi as mutasi FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND mutasi_krywn.tgl_mutasi BETWEEN '$tgl_masuk1' AND '$tgl_masuk2'");
+                }/*elseif (isset($_GET['tgl_masuk1']) AND isset($_GET['tgl_masuk2'])) {
+                  $tgl_masuk1 = $_GET['tgl_masuk1'];
+                  $tgl_masuk2 = $_GET['tgl_masuk2'];
+                  $cari_tgl = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, dftr_krywn.jabatan AS jabatan, dftr_krywn.cabang AS cabang, dftr_krywn.departement AS departement, mutasi_krywn.tgl_mutasi AS mutasi FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND dftr_krywn.tgl_masuk BETWEEN '$tgl_masuk1' AND '$tgl_masuk2'");
+                }*/
+                else{
                   $cari_tgl = mysqli_query($sambung, "SELECT * FROM dftr_krywn where ID='0'");
                 }
                 while($tgl=mysqli_fetch_array($cari_tgl)){
@@ -260,7 +263,7 @@
                     <td><?php echo $tgl['tgl_lahir']; ?></td>
                     <td><?php echo $tgl['alamat']; ?></td>
                     <td><?php echo $tgl['agama']; ?></td>
-                    <td><?php echo $tgl['email']; ?></td>
+                    <td><?php echo $tgl['mutasi']; ?></td>
                     <td><?php echo $tgl['jabatan']; ?></td>
                     <td><?php echo $tgl['cabang']; ?></td>
                     <td><?php echo $tgl['departement']; ?></td>
@@ -346,7 +349,19 @@
       </div>
     </div>
   </div>
+<?php 
+$i = 0;
 
+while ($i <= 1000) {
+  $i++;
+}
+
+$month = date('m');
+$day = date('d');
+$year = date('Y');
+
+$id_kry = $month . $year . $i;
+?>
   <!-- /.content-wrapper -->
       <div id="tambah" class="modal fade" role="dialog">
          <div class="modal-dialog">
@@ -361,8 +376,9 @@
                             <label class="control-label" for="NIK">NIK</label>
                             <input type="number" name="NIK" autocomplete="off" id="NIK" class="form-control" required>
                             <br>
-                            <label class="control-label" for="ID">ID Karyawan</label>
-                            <input type="text" name="ID"  value="KRYWN_MG" autocomplete="off" id="ID" class="form-control" required>
+                            <label class="control-label" for="ID">ID Karyawan<small>&emsp;ID Terakhir : <?php echo $id_kry; ?></small></label>
+                            <input type="text" name="ID" autocomplete="off" value=<?php echo $id_kry; ?> id="ID" class="form-control" required>
+                            <!-- Dibuat otomatis generate angka 13030001 tglblnnumber--> 
                             <br>
                             <label class="control-label" for="nama_krywn">Nama Karyawan</label>
                             <input type="text" name="nama_krywn" autocomplete="off" id="nama_krywn" class="form-control" required>
@@ -474,16 +490,16 @@
                             </select>
                             <br>
                             <label class="control-label" for="file_foto">Upload Foto (2x3 Max 2MB)</label>
-                            <input type="file" name="file_foto" id="file_foto" class="form-control" required>
+                            <input type="file" name="file_foto" id="file_foto" class="form-control">
                             <br>
                             <label class="control-label" for="file_ktp">Upload File KTP (File PDF Max 5MB)</label>
-                            <input type="file" name="file_ktp" id="file_ktp" class="form-control" required>
+                            <input type="file" name="file_ktp" id="file_ktp" class="form-control">
                             <br>
                             <label class="control-label" for="file_kk">Upload File KK (File PDF Max 5MB)</label>
-                            <input type="file" name="file_kk" id="file_kk" class="form-control" required>
+                            <input type="file" name="file_kk" id="file_kk" class="form-control">
                             <br>
                             <label class="control-label" for="file_nikah">Upload File Nikah (File PDF Max 5MB)</label>
-                            <input type="file" name="file_nikah" id="file_nikah" class="form-control" required>
+                            <input type="file" name="file_nikah" id="file_nikah" class="form-control">
                             <br>
                           </div>
                         </div>
