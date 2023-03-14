@@ -148,7 +148,7 @@
             </td>
             <td>
               <div class="input-group">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">&emsp;<b>PILIH PERIODE</b>&nbsp;</a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">&emsp;<b>TAHUNAN</b>&nbsp;</a>
                 <ul class="dropdown-menu">
                   <li><a href="harian.php">Harian</a></li>
                   <li><a href="bulanan.php">Bulanan</a></li>
