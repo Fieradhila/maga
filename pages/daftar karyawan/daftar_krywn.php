@@ -243,28 +243,76 @@
                 <?php
                 $tgl1 = isset($_GET['tgl_masuk1']);
                 $tgl2 = isset($_GET['tgl_masuk2']);
-                //buat tgl_history jadi ketika sampai tgl dan karyawan belum dimutasi tampil data yang lama dan  jika sudah dimutasi akan keluar data yang baru
-                if($tgl2 AND $tgl2){
-                  $tgl_masuk1 = $_GET['tgl_masuk1'];
+                $z = mysqli_query($sambung, "SELECT tgl_mutasi FROM mutasi_krywn");
+                if($tgl2 != $z){
                   $tgl_masuk2 = $_GET['tgl_masuk2'];
-                  $cari_tgl = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_lama AS jabatan, mutasi_krywn.lokasi_lama AS cabang, mutasi_krywn.departement_lama AS departement, mutasi_krywn.tgl_mutasi as mutasi FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND dftr_krywn.tgl_masuk = '$tgl_masuk2'");
+                  $cari_tgl = mysqli_query($sambung, "SELECT dftr_krywn.nama_krywn as nama_krywn, mutasi_krywn.lokasi_lama as cabang, mutasi_krywn.departement_lama as departement, mutasi_krywn.jabatan_lama as jabatan FROM mutasi_krywn, dftr_krywn where mutasi_krywn.NIK = dftr_krywn.NIK AND tgl_mutasi = '$tgl_masuk2'");
+                  echo "yeay";
+                }elseif($tgl2 == $z){
+                  $tgl_masuk2 = $_GET['tgl_masuk2'];
+                  $cari_tgl = mysqli_query($sambung, "SELECT dftr_krywn.nama_krywn as nama_krywn, mutasi_krywn.lokasi_baru as cabang, mutasi_krywn.departement_baru as departement, mutasi_krywn.jabatan_baru as jabatan FROM mutasi_krywn, dftr_krywn where mutasi_krywn.NIK = dftr_krywn.NIK AND tgl_mutasi = '$tgl_masuk2'");
+                  echo "wkwk";
+                }
+                else{
+                  $cari_tgl = mysqli_query($sambung, "SELECT * FROM dftr_krywn WHERE status_aktif = 'aktif'");
+                }
+                //buat tgl_history jadi ketika sampai tgl dan karyawan belum dimutasi tampil data yang lama dan  jika sudah dimutasi akan keluar data yang baru
+                //if($tgl1 AND $tgl2){
+                  //$tgl_masuk1 = $_GET['tgl_masuk1'];
+                  //$tgl_masuk2 = $_GET['tgl_masuk2'];
+                  //$cari_tgl = mysqli_query($sambung, "SELECT * FROM dftr_krywn WHERE dftr_krywn.tgl_masuk BETWEEN '$tgl_masuk1' AND '$tgl_masuk2' AND status_aktif = 'aktif'");
+
+                  //$cari_tgl = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, mutasi_krywn.tgl_mutasi AS tgl_mutasi, dftr_krywn.nama_krywn AS nama_krywn, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_lama AS jabatan, mutasi_krywn.lokasi_lama AS cabang, mutasi_krywn.departement_lama AS departement FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND mutasi_krywn.tgl_mutasi BETWEEN '$tgl_masuk1' AND '$tgl_masuk2'");
+
+                  //echo "if";
+                  //$cari_tgl = mysqli_query($sambung, "SELECT * FROM dftr_krywn WHERE dftr_krywn.tgl_masuk BETWEEN '$tgl_masuk1' AND '$tgl_masuk2' AND status_aktif = 'aktif'");
+                  /*$replace = mysqli_query($sambung, "SELECT * FROM mutasi_krywn,dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND mutasi_krywn.tgl_mutasi='$tgl_masuk2'");
+                  $x=mysqli_fetch_assoc($cari_tgl);
+                  $z=mysqli_fetch_assoc($replace);
+                  if($x['tgl_masuk'] < $z['tgl_mutasi']){
+                    $y = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_lama AS jabatan, mutasi_krywn.lokasi_lama AS cabang, mutasi_krywn.departement_lama AS departement FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = '34021559' AND mutasi_krywn.tgl_mutasi BETWEEN '$tgl_masuk1' AND '$tgl_masuk2'");
+                    $u=mysqli_fetch_assoc($y);
+                    echo $u['NIK'];
+                    echo $u['jabatan'];
+                    echo $u['departement'];
+                    echo $u['cabang'];
+                    echo "hehe";
+                  }else{
+                    $p = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_lama AS jabatan, mutasi_krywn.lokasi_lama AS cabang, mutasi_krywn.departement_lama AS departement FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = '34021559' AND mutasi_krywn.tgl_mutasi BETWEEN '$tgl_masuk1' AND '$tgl_masuk2'");
+                    $s=mysqli_fetch_assoc($p);
+                    echo $s['departement'];
+                  }*/
+                  //$replace = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.nama_krywn AS nama_krywn, dftr_krywn.NIK AS NIK, mutasi_krywn.tgl_mutasi AS tgl_mutasi, dftr_krywn.nama_krywn AS nama_krywn, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_lama AS jabatan, mutasi_krywn.lokasi_lama AS cabang, mutasi_krywn.departement_lama AS departement FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND dftr_krywn.tgl_masuk BETWEEN '$tgl_masuk1' AND '$tgl_masuk2'");
+                  //$cari_tgl = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_lama AS jabatan, mutasi_krywn.lokasi_lama AS cabang, mutasi_krywn.departement_lama AS departement FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND mutasi_krywn.tgl_mutasi BETWEEN '$tgl_masuk1' AND '$tgl_masuk2'");
                   //$cari_tgl = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_baru AS jabatan, mutasi_krywn.lokasi_baru AS cabang, mutasi_krywn.departement_baru AS departement, mutasi_krywn.tgl_mutasi as mutasi FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND mutasi_krywn.tgl_mutasi BETWEEN '$tgl_masuk1' AND '$tgl_masuk2'");
-                  echo "if";
-                }elseif ($tgl1 AND $tgl2) {
+                  while($z=mysqli_fetch_array($cari_tgl)){
+                  //$z=mysqli_fetch_assoc($cari_tgl);
+                  echo $z['nama_krywn'];
+                  echo $z['jabatan'];
+                  echo $z['departement'];
+                  echo $z['cabang'];
+                }
+                  //if()mutasi_krywn.NIK = dftr_krywn.NIK
+                /*}elseif ($tgl1 AND $tgl2) {
                   $tgl_masuk1 = $_GET['tgl_masuk1'];
                   $tgl_masuk2 = $_GET['tgl_masuk2'];
                   $cari_tgl = mysqli_query($sambung, "SELECT dftr_krywn.ID AS ID, dftr_krywn.NIK AS NIK, dftr_krywn.nama_krywn AS nama, dftr_krywn.tgl_lahir AS tgl_lahir, dftr_krywn.alamat AS alamat, dftr_krywn.agama AS agama, dftr_krywn.email AS email, mutasi_krywn.jabatan_baru AS jabatan, mutasi_krywn.lokasi_baru AS cabang, mutasi_krywn.departement_baru AS departement, mutasi_krywn.tgl_mutasi as mutasi FROM mutasi_krywn, dftr_krywn WHERE mutasi_krywn.NIK = dftr_krywn.NIK AND mutasi_krywn.tgl_mutasi BETWEEN '$tgl_masuk1' AND '$tgl_masuk2'");
                   echo "else";
                 }
+                //ExmA : jika karyawan A masuk pada tanggal 01 Feb 2023 -> lokasiA, departA, jabatanA, akan jadi data baru jika belum dimutasi jika sudah dimutasi akan menjadi data 
+                //ExmB :  dan karyawan A dimutasi pada tanggal 02 Feb 2023 -> lokasiB, departB, jabatanB
+                // maka jika karyawan A belum dimutasi akan muncul data ExmA
+                // dan jika karyawan A sudah dimutasi akan muncul data ExmB.
+                //akan muncul data ExmB jika data sudah dimutasi
                 else{
                   $cari_tgl = mysqli_query($sambung, "SELECT * FROM dftr_krywn where ID='0'");
-                }
+                }*/
                 while($tgl=mysqli_fetch_array($cari_tgl)){
                   ?>
                   <tr>
                     <td><?php echo $tgl['ID']; ?></td>
                     <td align="center"><?php echo $tgl['NIK']; ?></td>
-                    <td><?php echo $tgl['nama']; ?></td>
+                    <td><?php echo $tgl['nama_krywn']; ?></td>
                     <td><?php echo $tgl['tgl_lahir']; ?></td>
                     <td><?php echo $tgl['alamat']; ?></td>
                     <td><?php echo $tgl['agama']; ?></td>
@@ -272,9 +320,9 @@
                     <td><?php echo $tgl['jabatan']; ?></td>
                     <td><?php echo $tgl['cabang']; ?></td>
                     <td><?php echo $tgl['departement']; ?></td>
-                    <td><a href=hapus_karyawan.php?NIK=<?php echo $tgl['NIK'];?> onclick="return confirm('Anda yakin ingin menghapus data ini?')"><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-trash-o"></i></button></a></td>
-                    <td><a href=edit_krywn.php?NIK=<?php echo $tgl['NIK'];?> onclick="return confirm('Anda yakin ingin mengedit data ini?')"><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-edit"></i></button></a></td>
-                    <td><a href=detail_krywn.php?NIK=<?php echo $tgl['NIK'];?>><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-info-circle"></i></button></a></td>
+                    <td><a data-toggle="tooltip" title="Hapus" href=hapus_karyawan.php?NIK=<?php echo $tgl['NIK'];?> onclick="return confirm('Anda yakin ingin menghapus data ini?')"><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-trash-o"></i></button></a></td>
+                    <td><a data-toggle="tooltip" title="Edit" href=edit_krywn.php?NIK=<?php echo $tgl['NIK'];?> onclick="return confirm('Anda yakin ingin mengedit data ini?')"><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-edit"></i></button></a></td>
+                    <td><a data-toggle="tooltip" title="Detail" href=detail_krywn.php?NIK=<?php echo $tgl['NIK'];?>><button type="button" class="btn btn-block btn-primary btn-sm"><i class="fa fa-info-circle"></i></button></a></td>
                   </tr>
                   <?php } ?>
 
@@ -297,7 +345,7 @@
                                                                                     departement like '%".$cari."%' OR
                                                                                     email like '%".$cari."%' OR
                                                                                     status_kerja like '%".$cari."%' OR
-                                                                                    status_aktif like '%".$cari."%' ORDER BY ID DESC
+                                                                                    status_aktif like '%".$cari."%' ORDER BY nama_krywn ASC
                                                                                     ");
                 }else{
                   $search = mysqli_query($sambung, "SELECT * FROM dftr_krywn where ID='0' ");
@@ -373,6 +421,16 @@ $year = date('Y');
 $kry = $month . $year;
 $id_kry = $month . $year . $i;
 ?>
+
+        <?php
+        if(isset($_GET['cariid'])){
+          $idlast = $_GET['cariid'];
+          $last = mysqli_query($sambung, "SELECT ID FROM dftr_krywn WHERE ID like '%".$idlast."%' ORDER BY ID DESC");
+        }else{
+          $last = mysqli_query($sambung, "SELECT ID FROM dftr_krywn WHERE ID like '%".$kry."%' ORDER BY ID DESC");
+        }
+        $idid=mysqli_fetch_array($last)?>
+
   <!-- /.content-wrapper -->
       <div id="tambah" class="modal fade" role="dialog">
          <div class="modal-dialog">
@@ -387,8 +445,8 @@ $id_kry = $month . $year . $i;
                             <label class="control-label" for="NIK">NIK</label>
                             <input type="number" name="NIK" autocomplete="off" id="NIK" class="form-control" required>
                             <br>
-                            <label class="control-label" for="ID">ID Karyawan<small><a data-toggle="modal" data-target="#last">&emsp;ID Terakhir</a></small></label>
-                            <input type="text" name="ID" autocomplete="off" value=<?php echo $id_kry; ?> id="ID" class="form-control" required>
+                            <label class="control-label" for="ID">ID Karyawan<small>&emsp;ID Terakhir : &nbsp;<?php echo $idid['ID']; ?></small></label>
+                            <input type="text" name="ID" autocomplete="off" value=0<?php echo $idid['ID']+1; ?> id="ID" class="form-control" required>
                             <!-- Dibuat otomatis generate angka 13030001 tglblnnumber--> 
                             <br>
                             <label class="control-label" for="nama_krywn">Nama Karyawan</label>
@@ -522,54 +580,6 @@ $id_kry = $month . $year . $i;
                     </div>
                   </div>
                 </div>
-
-
-                <div id="last" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Cari ID Terakhir</h4>
-        </div>
-        <form action="#" method="GET" enctype="multipart/form-data">
-          <div class="modal-body">
-            <div class="form-group">
-              <label class="control-label" for="cariid">ID Terakhir</label>
-              <input type="text" name="cariid" value=<?php echo $kry; ?> autocomplete="off" id="cariid" class="form-control" required>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <input type="submit" class="btn btn-success" value="Cari">
-          </div>
-        </form>
-        <table class="table table-bordered">
-          <tr>
-            <td>ID yang sudah ada</td>
-</tr>
-<tr>
-            <td>
-
-            <?php 
-            
-if(isset($_GET['cariid'])){
-  $cari = $_GET['cariid'];
-}
-            ?>
-        <?php
-        if(isset($_GET['cariid'])){
-          $idlast = $_GET['cariid'];
-          $last = mysqli_query($sambung, "SELECT ID FROM dftr_krywn WHERE ID like '%".$idlast."%' ORDER BY ID DESC");
-        }else{
-          $last = mysqli_query($sambung, "SELECT ID FROM dftr_krywn");
-        }
-        while($idid=mysqli_fetch_array($last)){?>
-          <?php echo $idid['ID']; ?>
-        <?php } ?></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
 
   <footer class="main-footer">
     <strong>Copyright
